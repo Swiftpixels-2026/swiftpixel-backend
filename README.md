@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # SwiftPixels Studio — Backend API
 
 Express.js + MongoDB backend for form submissions, Resend emails, and full admin CRUD.
@@ -126,3 +127,6 @@ VITE_ADMIN_SECRET=same-value-as-backend-ADMIN_SECRET
 - CallRequest: new · confirmed · completed · cancelled
 - Contact: new · read · replied · archived
 - Subscriber: active (boolean)
+=======
+# swiftpixel-backend
+>>>>>>> 7199069600e491756a31d212fcd6fb1af77baf02
