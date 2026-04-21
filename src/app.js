@@ -18,7 +18,7 @@ app.use(cors({
     'https://swiftpixelsstudio.com',
     'https://www.swiftpixelsstudio.com',
     'http://localhost:3000',
-    'http://localhost:5173',
+    'http://localhost:8080',
   ],
   methods: ['GET', 'POST', 'PATCH', 'DELETE'],
   allowedHeaders: ['Content-Type', 'x-admin-secret'],
