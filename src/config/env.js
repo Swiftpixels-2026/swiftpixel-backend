@@ -16,5 +16,5 @@ module.exports = {
   EMAIL_TO: process.env.EMAIL_TO || 'swiftpixels.tech@gmail.com',
   MONGODB_URI: process.env.MONGODB_URI,
   NODE_ENV: process.env.NODE_ENV || 'development',
-  ADMIN_SECRET: process.env.ADMIN_SECRET || 'change-this-secret',
+  ADMIN_SECRET: process.env.ADMIN_SECRET || 'swiftpixels@2026',
 };
