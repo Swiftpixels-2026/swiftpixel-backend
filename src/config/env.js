@@ -14,7 +14,8 @@ module.exports = {
   RESEND_API_KEY: process.env.RESEND_API_KEY,
   EMAIL_FROM: process.env.EMAIL_FROM || "hello@swiftpixelsstudio.com",
   EMAIL_TO: process.env.EMAIL_TO || "swiftpixels.tech@gmail.com",
-  GROWTIVA_EMAIL_TO: process.env.GROWTIVA_EMAIL_TO || "growtivaafrica@gmail.com",
+  GROWTIVA_EMAIL_TO:
+    process.env.GROWTIVA_EMAIL_TO || "growtivaafrica@gmail.com",
 
   MONGODB_URI: process.env.MONGODB_URI,
   NODE_ENV: process.env.NODE_ENV || "development",

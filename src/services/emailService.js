@@ -1,5 +1,5 @@
-const { Resend } = require('resend');
-const { RESEND_API_KEY, EMAIL_FROM, EMAIL_TO } = require('../config/env');
+const { Resend } = require("resend");
+const { RESEND_API_KEY, EMAIL_FROM, EMAIL_TO } = require("../config/env");
 
 const resend = new Resend(RESEND_API_KEY);
 
