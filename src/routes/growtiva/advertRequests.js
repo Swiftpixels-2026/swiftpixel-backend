@@ -50,11 +50,13 @@ router.post("/", async (req, res) => {
       `📣 New Advert Request from ${full_name}`,
       advertRequestAdmin(data),
       GROWTIVA_EMAIL_TO,
+      "growtiva",
     );
     await sendConfirmation(
       email,
       "We received your advert request — Growtiva",
       advertRequestConfirmation(data),
+      "growtiva",
     );
 
     res
