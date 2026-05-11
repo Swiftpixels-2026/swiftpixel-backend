@@ -15,6 +15,9 @@ const gSubscribers     = require('./routes/growtiva/subscribers');
 const gAdvertRequests  = require('./routes/growtiva/advertRequests');
 const gProfiles        = require('./routes/growtiva/profiles');
 const gContactMessages = require('./routes/growtiva/contactMessages');
+const gInnerCircle     = require('./routes/growtiva/innerCircle');
+const gListings        = require('./routes/growtiva/listings');
+const gAuth            = require('./routes/growtiva/auth');
 
 const app = express();
 
@@ -74,19 +77,23 @@ app.get('/api/swiftpixels/admin/stats', adminAuth, async (req, res) => {
 // Growtiva stats
 app.get('/api/growtiva/admin/stats', adminAuth, async (req, res) => {
   try {
-    const [Subscriber, AdvertRequest, Profile, ContactMessage] = [
+    const [Subscriber, AdvertRequest, Profile, ContactMessage, InnerCircle, Listing] = [
       require('./models/growtiva/Subscriber'),
       require('./models/growtiva/AdvertRequest'),
       require('./models/growtiva/Profile'),
       require('./models/growtiva/ContactMessage'),
+      require('./models/growtiva/InnerCircle'),
+      require('./models/growtiva/Listing'),
     ];
-    const [subscribers, advertRequests, profiles, contactMessages] = await Promise.all([
+    const [subscribers, advertRequests, profiles, contactMessages, innerCircle, listings] = await Promise.all([
       Subscriber.countDocuments({ active: true }),
       AdvertRequest.countDocuments(),
       Profile.countDocuments(),
       ContactMessage.countDocuments(),
+      InnerCircle.countDocuments(),
+      Listing.countDocuments(),
     ]);
-    res.json({ subscribers, advertRequests, profiles, contactMessages });
+    res.json({ subscribers, advertRequests, profiles, contactMessages, innerCircle, listings });
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch stats.' });
   }
@@ -103,6 +110,9 @@ app.use('/api/growtiva/subscribers',      gSubscribers);
 app.use('/api/growtiva/advert-requests',  gAdvertRequests);
 app.use('/api/growtiva/profiles',         gProfiles);
 app.use('/api/growtiva/contact',          gContactMessages);
+app.use('/api/growtiva/inner-circle',     gInnerCircle);
+app.use('/api/growtiva/listings',         gListings);
+app.use('/api/growtiva/auth',             gAuth);
 
 // ─── 404 ──────────────────────────────────────────────────────────────────────
 app.use((req, res) => res.status(404).json({ error: 'Route not found' }));

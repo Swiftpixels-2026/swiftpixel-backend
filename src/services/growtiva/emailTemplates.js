@@ -91,6 +91,23 @@ const subscriberConfirmation = () => wrap(`
   <p style="margin-top:24px; font-size:14px; color:#666;">— The Growtiva Team</p>
 `);
 
+// ─── Inner Circle ─────────────────────────────────────────────────────────────
+const innerCircleAdmin = (data) => wrap(`
+  <h2 style="margin-top:0; color:#0a2540;">⭕ New Inner Circle Application</h2>
+  ${row('Name', data.name)}
+  ${row('Email', data.email)}
+  ${row('Role', data.role)}
+  ${row('City', data.city)}
+  ${block('Why Join', data.why)}
+`);
+
+const innerCircleConfirmation = (data) => wrap(`
+  <h2 style="margin-top:0;">Hi ${data.name} 👋</h2>
+  <p>Thank you for applying to the <strong>Growtiva Inner Circle</strong>!</p>
+  <p>We've received your application and will review it carefully. If you're a good fit, someone from our team will reach out to you.</p>
+  <p style="font-size:14px; color:#666;">— The Growtiva Team</p>
+`);
+
 module.exports = {
   advertRequestAdmin,
   advertRequestConfirmation,
@@ -100,4 +117,6 @@ module.exports = {
   profileConfirmation,
   subscriberAdmin,
   subscriberConfirmation,
+  innerCircleAdmin,
+  innerCircleConfirmation,
 };

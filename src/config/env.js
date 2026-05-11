@@ -28,4 +28,5 @@ module.exports = {
   MONGODB_URI: process.env.MONGODB_URI,
   NODE_ENV: process.env.NODE_ENV || "development",
   ADMIN_SECRET: process.env.ADMIN_SECRET || "swiftpixels@2026",
+  JWT_SECRET: process.env.JWT_SECRET || "growtiva_super_secret_2026",
 };
