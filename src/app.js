@@ -18,6 +18,7 @@ const gContactMessages = require("./routes/growtiva/contactMessages");
 const gInnerCircle = require("./routes/growtiva/innerCircle");
 const gListings = require("./routes/growtiva/listings");
 const gAuth = require("./routes/growtiva/auth");
+const gReadingRoom = require("./routes/growtiva/readingRoom");
 
 const app = express();
 
@@ -87,6 +88,7 @@ app.get("/api/growtiva/admin/stats", adminAuth, async (req, res) => {
       ContactMessage,
       InnerCircle,
       Listing,
+      ReadingRoom,
     ] = [
       require("./models/growtiva/Subscriber"),
       require("./models/growtiva/AdvertRequest"),
@@ -94,6 +96,7 @@ app.get("/api/growtiva/admin/stats", adminAuth, async (req, res) => {
       require("./models/growtiva/ContactMessage"),
       require("./models/growtiva/InnerCircle"),
       require("./models/growtiva/Listing"),
+      require("./models/growtiva/ReadingRoom"),
     ];
     const [
       subscribers,
@@ -102,6 +105,7 @@ app.get("/api/growtiva/admin/stats", adminAuth, async (req, res) => {
       contactMessages,
       innerCircle,
       listings,
+      readingRoom,
     ] = await Promise.all([
       Subscriber.countDocuments({ active: true }),
       AdvertRequest.countDocuments(),
@@ -109,6 +113,7 @@ app.get("/api/growtiva/admin/stats", adminAuth, async (req, res) => {
       ContactMessage.countDocuments(),
       InnerCircle.countDocuments(),
       Listing.countDocuments(),
+      ReadingRoom.countDocuments({ active: true }),
     ]);
     res.json({
       subscribers,
@@ -117,6 +122,7 @@ app.get("/api/growtiva/admin/stats", adminAuth, async (req, res) => {
       contactMessages,
       innerCircle,
       listings,
+      readingRoom,
     });
   } catch (err) {
     res.status(500).json({ error: "Failed to fetch stats." });
@@ -137,6 +143,7 @@ app.use("/api/growtiva/contact", gContactMessages);
 app.use("/api/growtiva/inner-circle", gInnerCircle);
 app.use("/api/growtiva/listings", gListings);
 app.use("/api/growtiva/auth", gAuth);
+app.use("/api/growtiva/reading-room", gReadingRoom);
 
 // ─── 404 ──────────────────────────────────────────────────────────────────────
 app.use((req, res) => res.status(404).json({ error: "Route not found" }));

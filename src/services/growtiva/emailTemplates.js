@@ -108,6 +108,19 @@ const innerCircleConfirmation = (data) => wrap(`
   <p style="font-size:14px; color:#666;">— The Growtiva Team</p>
 `);
 
+// ─── Reading Room ─────────────────────────────────────────────────────────────
+const readingRoomAdmin = (data) => wrap(`
+  <h2 style="margin-top:0; color:#0a2540;">📚 New Growtiva Reading Room Member</h2>
+  ${row('Email', data.email)}
+  ${row('Name', data.name)}
+`);
+
+const readingRoomConfirmation = () => wrap(`
+  <h2 style="margin-top:0;">Welcome to the Growtiva Reading Room! 📚</h2>
+  <p>You've successfully joined the Growtiva Reading Room. Get ready for curated articles, recommended reads, and deep dives sent straight to your inbox.</p>
+  <p style="margin-top:24px; font-size:14px; color:#666;">— The Growtiva Team</p>
+`);
+
 module.exports = {
   advertRequestAdmin,
   advertRequestConfirmation,
@@ -119,4 +132,7 @@ module.exports = {
   subscriberConfirmation,
   innerCircleAdmin,
   innerCircleConfirmation,
+  readingRoomAdmin,
+  readingRoomConfirmation,
 };
+
