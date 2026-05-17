@@ -21,6 +21,7 @@ const gAuth = require("./routes/growtiva/auth");
 const gReadingRoom = require("./routes/growtiva/readingRoom");
 const gApplications = require("./routes/growtiva/applications");
 const gLetters = require("./routes/growtiva/letters");
+const gEvents = require("./routes/growtiva/events");
 
 const app = express();
 
@@ -93,6 +94,7 @@ app.get("/api/growtiva/admin/stats", adminAuth, async (req, res) => {
       ReadingRoom,
       Application,
       Letter,
+      Event,
     ] = [
       require("./models/growtiva/Subscriber"),
       require("./models/growtiva/AdvertRequest"),
@@ -103,6 +105,7 @@ app.get("/api/growtiva/admin/stats", adminAuth, async (req, res) => {
       require("./models/growtiva/ReadingRoom"),
       require("./models/growtiva/Application"),
       require("./models/growtiva/Letter"),
+      require("./models/growtiva/Event"),
     ];
     const [
       subscribers,
@@ -114,6 +117,7 @@ app.get("/api/growtiva/admin/stats", adminAuth, async (req, res) => {
       readingRoom,
       applications,
       letters,
+      events,
     ] = await Promise.all([
       Subscriber.countDocuments({ active: true }),
       AdvertRequest.countDocuments(),
@@ -124,6 +128,7 @@ app.get("/api/growtiva/admin/stats", adminAuth, async (req, res) => {
       ReadingRoom.countDocuments({ active: true }),
       Application.countDocuments(),
       Letter.countDocuments(),
+      Event.countDocuments(),
     ]);
     res.json({
       subscribers,
@@ -135,6 +140,7 @@ app.get("/api/growtiva/admin/stats", adminAuth, async (req, res) => {
       readingRoom,
       applications,
       letters,
+      events,
     });
   } catch (err) {
     res.status(500).json({ error: "Failed to fetch stats." });
@@ -158,6 +164,7 @@ app.use("/api/growtiva/auth", gAuth);
 app.use("/api/growtiva/reading-room", gReadingRoom);
 app.use("/api/growtiva/applications", gApplications);
 app.use("/api/growtiva/letters", gLetters);
+app.use("/api/growtiva/events", gEvents);
 
 // ─── 404 ──────────────────────────────────────────────────────────────────────
 app.use((req, res) => res.status(404).json({ error: "Route not found" }));
